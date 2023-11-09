@@ -1,0 +1,8 @@
+{
+  "Port"          : "COM3",
+  "Units"         : {
+    "Unit"        : ["LB", "OZ", "KG", "G", "N", "MN", "KN", "LBFT", "LBIN", "OZIN", "KGM", "KGMM", "GCM", "NM", "NCM", "NMM", "COF", "CU"],
+    "Description" : [""]
+  },
+  "Polling_rate"  : 10
+}
