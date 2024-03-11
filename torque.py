@@ -11,9 +11,9 @@ ser = serial.Serial()
 ser.baudrate = 115200
 ser.port = 'COM3'
 ser.open()
-ser.write(b'?C\r') #la b es para decirle que lo pase en ascii
-r1 = ser.readline()
-print(r1)
+ser.write(b'LBIN\r') #la b es para decirle que lo pase en ascii       #NM, LBFT, NCM, LBIN, OZIN
+#r1 = ser.readline()
+#print(r1)
 
 ser.close()
 

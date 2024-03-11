@@ -109,4 +109,3 @@ class CPanel( QtWidgets.QWidget, CPanelView ):
         self.pcpm_timer.setInterval( int( 1000 / DPS ) )
         self.pcpm_timer.timeout.connect( self.run )
         self.pcpm_timer.start()
-

@@ -1,8 +1,9 @@
 {
   "Port"          : "COM3",
+  "UnitSel"       : "LB",
   "Units"         : {
-    "Unit"        : ["LB", "OZ", "KG", "G", "N", "MN", "KN", "LBFT", "LBIN", "OZIN", "KGM", "KGMM", "GCM", "NM", "NCM", "NMM", "COF", "CU"],
-    "Description" : [""]
+    "Unit"        : ["LBIN", "LBFT", "NM", "NCM", "OZIN"],
+    "Description" : ["Pound-Inch", "Pound-Feet", "Newton-Meter", "Newton-Centimeter", "Ounce-Inch"]
   },
-  "Polling_rate"  : 10
+  "Polling_rate"  : 100
 }

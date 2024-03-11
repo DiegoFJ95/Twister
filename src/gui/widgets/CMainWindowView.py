@@ -7,7 +7,7 @@ class CMainWindowView( object ):
     def setupUI(self, MainWindow : QtWidgets.QMainWindow ):
         MainWindow.setWindowTitle("Twister GUI")
         MainWindow.setObjectName("Twister GUI")
-        MainWindow.resize(1080, 540)
+        MainWindow.resize(970, 550)
         # Central Widget
         self.centralwidget  = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
