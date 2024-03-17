@@ -1,6 +1,7 @@
 from serial.tools import list_ports
 import pyqtgraph as pg
 from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtGui import QCursor
 from src import CONFIG_FILE
 import serial
 
@@ -70,17 +71,26 @@ class CPanelView( object ):
             return command
 
 
-
-
-
     def setupUI( self, parent : QtWidgets.QWidget ):
         aflag = QtCore.Qt.AlignmentFlag
+        mainlayout = QtWidgets.QHBoxLayout()
         # Layout Declaration
         layout = QtWidgets.QHBoxLayout()
 
+        tabs = QtWidgets.QTabWidget()
+        tab1 = QtWidgets.QWidget()
+        tab2 = QtWidgets.QWidget()
+        tab3 = QtWidgets.QWidget()
+
+        tab1.setObjectName("Tab1")
+
+        tabs.addTab(tab1 , "Sensor")
+        tabs.addTab(tab2 , "Control")
+        tabs.addTab(tab3 , "Rutinas")
+        tab1.setLayout(layout)
+        mainlayout.addWidget(tabs)
 
         self.port_detection(self.ports)
-
 
 
         self.plot_graph = pg.PlotWidget()
@@ -102,9 +112,12 @@ class CPanelView( object ):
 
         self.data_line=self.plot_graph.plot(self.AngularD, self.Torque, pen=pen, symbol="o")
 
+        
         layout.addWidget( self.plot_graph, alignment=aflag.AlignVCenter | aflag.AlignLeft )
 
-
+        menu = QtWidgets.QWidget()
+        menu.setObjectName("Menu")
+        
         Vlayout = QtWidgets.QVBoxLayout()
 
         # COM Port / Load
@@ -112,14 +125,16 @@ class CPanelView( object ):
         self.port_list.addItems(self.ports)
         self.load_button = QtWidgets.QPushButton()
         self.load_button.setText( "Load" )
+        self.load_button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.update_port_button = QtWidgets.QPushButton()
         self.update_port_button.setText( "Update" )
+        self.update_port_button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
 
         H1layout = QtWidgets.QHBoxLayout()
-        H1layout.addWidget( QtWidgets.QLabel( "COM Port" ), alignment=aflag.AlignTop | aflag.AlignLeft )
-        H1layout.addWidget( self.port_list, alignment=aflag.AlignTop | aflag.AlignLeft )
-        H1layout.addWidget( self.load_button, alignment=aflag.AlignTop | aflag.AlignLeft )
-        H1layout.addWidget( self.update_port_button, alignment=aflag.AlignTop | aflag.AlignLeft, stretch = 1 )
+        H1layout.addWidget( QtWidgets.QLabel( "COM Port" ), alignment=aflag.AlignVCenter | aflag.AlignLeft )
+        H1layout.addWidget( self.port_list, alignment=aflag.AlignVCenter | aflag.AlignLeft )
+        H1layout.addWidget( self.load_button, alignment=aflag.AlignVCenter | aflag.AlignLeft )
+        H1layout.addWidget( self.update_port_button, alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 1 )
         Vlayout.addLayout( H1layout, stretch = 0 )
 
 
@@ -130,8 +145,8 @@ class CPanelView( object ):
         self.polling_value.setValue(self.polling_rate)
 
         H2layout = QtWidgets.QHBoxLayout()
-        H2layout.addWidget( QtWidgets.QLabel( "Polling Rate" ), alignment=aflag.AlignTop | aflag.AlignLeft, stretch = 0)
-        H2layout.addWidget( self.polling_value, alignment=aflag.AlignTop | aflag.AlignLeft, stretch = 1)
+        H2layout.addWidget( QtWidgets.QLabel( "Polling Rate" ), alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 0)
+        H2layout.addWidget( self.polling_value, alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 1)
         Vlayout.addLayout( H2layout, stretch = 0 )
 
 
@@ -142,13 +157,15 @@ class CPanelView( object ):
         self.unit_description.setText(Units["Description"][self.UnitIndex])
 
         H3layout = QtWidgets.QHBoxLayout()
-        H3layout.addWidget( QtWidgets.QLabel( "Units"), alignment=aflag.AlignTop | aflag.AlignLeft, stretch = 0)
-        H3layout.addWidget( self.unit_list, alignment=aflag.AlignTop | aflag.AlignLeft, stretch = 0)
-        H3layout.addWidget( self.unit_description, alignment=aflag.AlignTop | aflag.AlignLeft, stretch = 1)
-        Vlayout.addLayout( H3layout, stretch = 1 )
+        H3layout.addWidget( QtWidgets.QLabel( "Units"), alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 0)
+        H3layout.addWidget( self.unit_list, alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 0)
+        H3layout.addWidget( self.unit_description, alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 1)
+        Vlayout.addLayout( H3layout, stretch = 0 )
+        Vlayout.setAlignment(aflag.AlignTop)
 
-        layout.addLayout( Vlayout )
-        parent.setLayout( layout )
+        menu.setLayout(Vlayout)
+        layout.addWidget( menu )
+        parent.setLayout( mainlayout )
 
 
 #        def _loadButtonCallback( self, first , *rest ):

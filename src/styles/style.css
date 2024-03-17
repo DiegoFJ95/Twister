@@ -1,0 +1,113 @@
+QWidget{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000;
+}
+
+QWidget#Tab1{
+    background-color: #282828;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+QWidget#Menu{
+    background-color: #424242;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+QLabel{
+    color: #fff;
+    background-color: #424242;
+    font-size: 12pt;
+}
+
+
+
+QPushButton, QComboBox, QSpinBox{
+    background-color: #282828;
+    color: #fff;
+    font-size: 10pt;
+    border: 2px solid #919191;
+    border-radius: 14px;
+    padding: 4px 10px;
+}
+
+QPushButton:hover{
+    border-color: #804bfd;
+
+}
+
+QSpinBox::up-button, QSpinBox::down-button {
+    width: 2em;
+    border-left-width: 2px;
+    border-left-color: rgb(255, 255, 255);
+    border-left-style: solid;
+}
+
+QSpinBox::up-arrow {
+    image: url(src/icons/up_pointer.png);
+    width: 12px;
+    height: 6px;
+}
+
+QSpinBox::down-arrow {
+    image: url(src/icons/down_pointer.png);
+    width: 12px;
+    height: 6px;
+}
+
+QAbstractItemView{
+    color: #fff;
+    background-color: #282828;
+}
+
+QSpinBox::up-button{
+    background-color: none;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover{
+    border-left-color: #804bfd;
+}
+
+
+
+QComboBox::drop-down {
+    width: 2em;
+    border-left-width: 2px;
+    border-left-color: rgb(255, 255, 255);
+    border-left-style: solid; 
+
+}
+
+QComboBox::drop-down:hover {
+    border-left-color: #804bfd;
+}
+
+QComboBox::down-arrow {
+    image: url(src/icons/down_arrow.png);
+    max-width: 1em;
+    max-height: 1em;
+}
+
+QTabWidget::pane {
+} 
+
+QTabBar::tab {
+    font-size: 12pt;
+    background: #000000; 
+    color: #ffffff;
+    min-width: 50px;
+    /* border: 2px solid rgb(255, 255, 255);  */
+    padding: 15px 50px;
+} 
+
+QTabBar::tab:selected { 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #ffffff;
+    background: #282828; 
+    margin-bottom: -2px; 
+}

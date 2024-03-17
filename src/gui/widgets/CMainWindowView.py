@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 
 # Import Widgets
 from src.gui.widgets.CPanel import CPanel
@@ -7,7 +7,8 @@ class CMainWindowView( object ):
     def setupUI(self, MainWindow : QtWidgets.QMainWindow ):
         MainWindow.setWindowTitle("Twister GUI")
         MainWindow.setObjectName("Twister GUI")
-        MainWindow.resize(970, 550)
+        MainWindow.resize(1027, 583)
+        MainWindow.setWindowIcon(QtGui.QIcon("src/icons/" + "down_arrow.png"))
         # Central Widget
         self.centralwidget  = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
