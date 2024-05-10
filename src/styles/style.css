@@ -1,10 +1,17 @@
 QWidget{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000000;
+    font-family: Arial, Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000
+    /* qlineargradient(
+                        x1: 0.2, y1: 0.2, x2: 0, y2: 1,
+                        stop: 0 #000000, stop: 1 #08001b);  */
 }
 
-QWidget#Tab1{
+QWidget#Tab{
+     /* #282828; */ 
     background-color: #282828;
+    /* qlineargradient(
+        x1: 0.2, y1: 0.2, x2: 0, y2: 1,
+        stop: 0 #282828, stop: 1 #31264b);  */
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -12,6 +19,9 @@ QWidget#Tab1{
 
 QWidget#Menu{
     background-color: #424242;
+    /* qlineargradient(
+        x1: 0.2, y1: 0.2, x2: 0, y2: 1,
+        stop: 0 #424242, stop: 1 #4d4168); */
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-top-left-radius: 5px;
@@ -20,14 +30,14 @@ QWidget#Menu{
 
 QLabel{
     color: #fff;
-    background-color: #424242;
+    background-color: #282828;
     font-size: 12pt;
 }
 
 
 
 QPushButton, QComboBox, QSpinBox{
-    background-color: #282828;
+    background-color: #1d1d1d;
     color: #fff;
     font-size: 10pt;
     border: 2px solid #919191;
@@ -111,3 +121,27 @@ QTabBar::tab:selected {
     background: #282828; 
     margin-bottom: -2px; 
 }
+
+
+PlotWidget {
+    border-radius: 5px;
+}
+
+QGroupBox {
+    background-color: #282828;
+    border: 2px solid #999999;
+    border-radius: 10px;
+    margin-top: 2ex;  /*leave space at the top for the title */
+    font-size: 15px;
+    color: black;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;    /* position at the top center */
+    padding: 0 10px;
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+}
+/* 
+qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #000000, stop: 1 #FFFFFF); */

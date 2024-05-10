@@ -104,7 +104,6 @@ class CPanel( QtWidgets.QWidget, CPanelView ):
     def setTimers( self ):
         #DPS = CONFIG_FILE.get( "Polling_rate" )
         DPS = self.GetPollingRate()
-        print("polling rate:", DPS)
         self.pcpm_timer = QtCore.QTimer()
         self.pcpm_timer.setInterval( int( 1000 / DPS ) )
         self.pcpm_timer.timeout.connect( self.run )

@@ -51,7 +51,6 @@ class CPanelView( object ):
 
     def PollingRateUpdate(self):
         self.polling_rate = self.polling_value.value()
-        print(self.polling_rate)
 
     def GetPollingRate(self):
         return self.polling_rate
@@ -82,38 +81,42 @@ class CPanelView( object ):
         tab2 = QtWidgets.QWidget()
         tab3 = QtWidgets.QWidget()
 
-        tab1.setObjectName("Tab1")
+        tab1.setObjectName("Tab")
+        tab2.setObjectName("Tab")
+        tab3.setObjectName("Tab")
 
         tabs.addTab(tab1 , "Sensor")
         tabs.addTab(tab2 , "Control")
         tabs.addTab(tab3 , "Rutinas")
         tab1.setLayout(layout)
-        mainlayout.addWidget(tabs)
+        mainlayout.addWidget(tabs, stretch = 1)
 
         self.port_detection(self.ports)
 
 
         self.plot_graph = pg.PlotWidget()
-        self.plot_graph.setBackground((230,230,230))
-        self.plot_graph.setTitle("Torque/Angular Displacement", color=((0,0,0)), size="12pt")
+        
+        self.plot_graph.setBackground((40,40,40))
+        self.plot_graph.setTitle("Torque/Angular Displacement", color=((255,255,255)), size="12pt")
 
-        self.plot_graph.setLabel("left", "Torque", color=((100,100,100)))
-        self.plot_graph.setLabel("bottom", "Angular Displacement", color=((100,100,100)))
+        self.plot_graph.setLabel("left", '<span style="color: rgb(200,200,200); font-size: 10pt">Torque</span>')
+        self.plot_graph.setLabel("bottom", '<span style="color: rgb(200,200,200); font-size: 10pt">Angular Displacement</span>')
 
         self.plot_graph.setXRange(-10,10)
         self.plot_graph.setYRange(-10,10)
         self.plot_graph.showGrid(x=True, y=True)
 
-        pen = pg.mkPen(color=(0, 0, 0), width = 3)  #,style=QtCore.Qt.DashLine
+        pen = pg.mkPen(color=((255,255,255)), width = 3)  #,style=QtCore.Qt.DashLine
         pen.setCapStyle(QtCore.Qt.RoundCap)
         pen.setJoinStyle(QtCore.Qt.RoundJoin)
 #        pen.setCapStyle(RoundCap);
 #        pen.setJoinStyle(RoundJoin);
 
         self.data_line=self.plot_graph.plot(self.AngularD, self.Torque, pen=pen, symbol="o")
-
         
         layout.addWidget( self.plot_graph, alignment=aflag.AlignVCenter | aflag.AlignLeft )
+
+
 
         menu = QtWidgets.QWidget()
         menu.setObjectName("Menu")
@@ -130,12 +133,18 @@ class CPanelView( object ):
         self.update_port_button.setText( "Update" )
         self.update_port_button.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
 
+       
+
         H1layout = QtWidgets.QHBoxLayout()
         H1layout.addWidget( QtWidgets.QLabel( "COM Port" ), alignment=aflag.AlignVCenter | aflag.AlignLeft )
         H1layout.addWidget( self.port_list, alignment=aflag.AlignVCenter | aflag.AlignLeft )
         H1layout.addWidget( self.load_button, alignment=aflag.AlignVCenter | aflag.AlignLeft )
         H1layout.addWidget( self.update_port_button, alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 1 )
-        Vlayout.addLayout( H1layout, stretch = 0 )
+
+        box1 = QtWidgets.QGroupBox()
+        box1.setTitle("Ports")
+        box1.setLayout( H1layout )
+        Vlayout.addWidget( box1, stretch = 0 )
 
 
 
@@ -147,7 +156,14 @@ class CPanelView( object ):
         H2layout = QtWidgets.QHBoxLayout()
         H2layout.addWidget( QtWidgets.QLabel( "Polling Rate" ), alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 0)
         H2layout.addWidget( self.polling_value, alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 1)
-        Vlayout.addLayout( H2layout, stretch = 0 )
+
+        V2layout = QtWidgets.QVBoxLayout()
+        box2 = QtWidgets.QGroupBox()
+        box2.setTitle("Measurenments")
+        box2.setLayout( V2layout )
+
+        V2layout.addLayout( H2layout, stretch = 0 )
+        
 
 
 
@@ -160,9 +176,11 @@ class CPanelView( object ):
         H3layout.addWidget( QtWidgets.QLabel( "Units"), alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 0)
         H3layout.addWidget( self.unit_list, alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 0)
         H3layout.addWidget( self.unit_description, alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 1)
-        Vlayout.addLayout( H3layout, stretch = 0 )
-        Vlayout.setAlignment(aflag.AlignTop)
+        V2layout.addLayout( H3layout, stretch = 0 )
+        
 
+        Vlayout.addWidget( box2, stretch = 0 )
+        Vlayout.setAlignment(aflag.AlignTop)
         menu.setLayout(Vlayout)
         layout.addWidget( menu )
         parent.setLayout( mainlayout )
