@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QApplication
-from src.gui.widgets.CMainWindow import CMainWindow
+from src.gui.widgets.WindowController import WindowController
+from PyQt5 import QtGui
 
 import ctypes
 
@@ -8,10 +9,11 @@ ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 if __name__ == "__main__":
     app     = QApplication([])
-
-    with open("src/styles/" + "style.css","r") as stylefile:
+    QtGui.QFontDatabase.addApplicationFont("src/resources/Montserrat-Regular.ttf")
+    QtGui.QFontDatabase.addApplicationFont("src/resources/Inter-Regular.ttf")
+    with open("src/styles/" + "styles.css","r") as stylefile:
         app.setStyleSheet(stylefile.read())
 
-    window = CMainWindow()
+    window = WindowController()
     window.show()
     app.exec_()

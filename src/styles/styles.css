@@ -1,0 +1,220 @@
+QMainWindow{
+    background-color: darkgray;
+    border: 3px solid #ffffff;
+}
+
+QWidget{
+    font-family: sans-serif, Inter, system-ui,Segoe UI, Tahoma, Geneva, Verdana;
+    background-color: #1c1c1c;
+    color: #ffffff;
+    font-size: 12pt;
+    /* qlineargradient(x1: 0, y1: 1, x2: 1, y2: 1, stop: 0 #1c1c1c, stop: 1 #101010);  */
+}
+
+QPushButton, QComboBox, QSpinBox{
+    color: #ffffff;
+    border: 2px solid #3d3d3d;
+    background-color: #1c1c1c;
+    /* border-bottom: 2px solid #5e41a8;
+    border-left: 2px solid #5e41a8; */
+    border-radius: 0.25em;
+    width: 3.5em;
+    height: 1.5em;
+}
+
+QPushButton:hover{
+    border: 2px solid #5e41a8;
+}
+
+QComboBox:hover {
+    border-color: #5e41a8;
+}
+
+QSpinBox:hover {
+    border-color: #5e41a8;
+}
+
+QComboBox::drop-down {
+    width: 2em;
+    border-left-width: 2px;
+    border-left-color: #3d3d3d;;
+    border-left-style: solid; 
+
+}
+
+QComboBox::drop-down {
+    border: 2px solid #1c1c1c;
+    border-radius: 0px;
+    border-left-color: #3d3d3d;
+}
+
+QComboBox::drop-down:hover {
+    background-color: #5e41a8;
+    border-color: #5e41a8;
+}
+
+QComboBox::down-arrow {
+    image: url(src/icons/down-arrow.png);
+    max-width: 1em;
+    max-height: 1em;
+}
+
+#Tab{
+    /* #282828; */ 
+    background-color: #1c1c1c;
+    /* qlineargradient(x1: 0, y1: 1, x2: 1, y2: 1, stop: 0 #1c1c1c, stop: 1 #101010);  */
+    /* qlineargradient(
+        x1: 0.2, y1: 0.2, x2: 0, y2: 1,
+        stop: 0 #282828, stop: 1 #31264b);  */
+}
+
+#Tabs-Container{
+    background-color: #151515; 
+}
+
+#Title-Container{
+    background-color: #090909;
+}
+
+#Title-Twister{
+    /* color: #ffffff; */
+    background-color: #090909;
+    font-size: 24pt; 
+    max-height: 1.5em;
+}
+
+#Logo-Twister{
+    background-color: #090909;
+    max-height: 5em;
+    max-width: 4em;
+    padding-left: 0.5em;
+}
+
+#Titulo{
+    font-weight: 600;
+    /* color: #ffffff; */
+    font-size: 20pt; 
+    height: 1.5em;
+    max-height: 1.5em;
+    min-height: 1.5em;
+}
+
+
+
+#Subtitulo{
+    font-weight: 500;
+    background-color: #242424;
+    /* color: #ffffff; */
+    font-size: 16pt; 
+    max-height: 1em;
+    /* vertical-align: top;
+    text-align: top; */
+}
+
+#Text{
+    background-color: #242424;
+    font-weight: light;
+}
+
+QTabWidget::pane{
+    border:none
+}
+
+QTabWidget{
+
+}
+
+QTabBar{
+
+}
+
+QTabWidget::tab-bar {
+
+}
+
+QTabBar::tab {
+    /* image: url(src/icons/moebius.png); */
+    font-size: 12pt;
+    background: #151515; 
+    color: #ffffff;
+    width: 3.5em;
+    height: 3em;
+    border-left-style: solid;
+    border-left-color: #151515;
+    border-left-width: 2px;
+    padding-top: -0.5em;
+    padding-bottom: 1em;
+    /* padding: 10px 10px 10px 10px; */
+    /* border: 2px solid rgb(255, 255, 255);  */
+    /* padding: 15px 50px; */
+} 
+
+QTabBar::tab:hover { 
+    color: #ffffff;
+    background: #2c2c2c; 
+}
+
+
+QTabBar::tab:selected { 
+    background: #0f0f0f;
+
+    border-left-color: #5e41a8;
+
+}
+
+/* Card */
+
+#Card{
+    background-color: #242424;
+    border-radius: 0.25em;
+    border-left-style: solid;
+    border-left-width: 2px;
+    
+    /* qlineargradient(
+        x1: 0.2, y1: 0.2, x2: 0, y2: 1,
+        stop: 0 #424242, stop: 1 #4d4168); */
+}
+
+#Card[state="success"]{
+    border-left-color: #4a8b2f;
+}
+
+#Card[state="attention"]{
+    border-left-color: #a88841;
+}
+
+#Card[state="warning"]{
+    border-left-color: #a84141;
+}
+/* 
+PlotWidget {
+    border-radius: 5px;
+} */
+
+QSpinBox::up-button, QSpinBox::down-button {
+    width: 2em;
+    border-left-width: 2px;
+    border-left-color: #3d3d3d;
+    border-left-style: solid;
+}
+
+QSpinBox::up-arrow {
+    image: url(src/icons/up-arrow.png);
+    max-width: 0.5em;
+    max-height: 0.5em;
+}
+
+QSpinBox::down-arrow {
+    image: url(src/icons/down-arrow.png);
+    max-width: 0.5em;
+    max-height: 0.5em;
+}
+
+/* QSpinBox::up-button{
+    background-color: none;
+} */
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover{
+    border-color: #5e41a8;
+    background-color: #5e41a8;
+}
