@@ -18,12 +18,19 @@ QPushButton, QComboBox, QSpinBox{
     /* border-bottom: 2px solid #5e41a8;
     border-left: 2px solid #5e41a8; */
     border-radius: 0.25em;
-    width: 3.5em;
+    /* width: 3.5em; */
     height: 1.5em;
+    padding:0px 5px 0px 5px;
 }
 
 QPushButton:hover{
     border: 2px solid #5e41a8;
+}
+
+QPushButton:disabled {
+    color: #afafaf;
+    border: 2px solid #2e2e2e;
+    background-color: #1c1c1c;
 }
 
 QComboBox:hover {
@@ -186,6 +193,8 @@ QTabBar::tab:selected {
 #Card[state="warning"]{
     border-left-color: #a84141;
 }
+
+
 /* 
 PlotWidget {
     border-radius: 5px;

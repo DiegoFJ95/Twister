@@ -11,7 +11,7 @@ class SerialCom:
         self.position = 0
         self.callback = callback
         self._iter = self.loop()
-        
+
     def next(self):
         return next( self._iter )
 
@@ -21,21 +21,21 @@ class SerialCom:
         return msg + b"*" + cs.to_bytes(2,"little")
 
     def m0( steps ):
-        msg = str.encode( "M0 ", "ascii" )
+        msg = str.encode( "M0 ", "ascii" ) #paso a la derecha
         msg = msg + steps.to_bytes(2,"little")
         return SerialCom.cs(msg)
 
     def m1( steps ):
-        msg = str.encode( "M1 ", "ascii" )
+        msg = str.encode( "M1 ", "ascii" ) #paso a la izquierda
         msg = msg + steps.to_bytes(2,"little")
         return SerialCom.cs(msg)
 
     def p0():
-        msg = str.encode( "P0 ", "ascii" )
+        msg = str.encode( "P0 ", "ascii" ) #setea en 0 la var de posicion
         return SerialCom.cs(msg)
 
     def p1():
-        msg = str.encode( "P1 ", "ascii" )
+        msg = str.encode( "P1 ", "ascii" ) # regresa la posición
         return SerialCom.cs(msg)
 
     def move(self, steps : int):
@@ -95,17 +95,21 @@ class SerialCom:
                 if res == b"DONE\n":
                     self.bussy = False
                 yield
-                
 
-ser = SerialCom( "COM4", print )
-ser.schedule( ("M",100) )
-ser.schedule( ("M",-50) )
-ser.schedule( ("P",) )
-ser.schedule( ("Z",) )
-ser.schedule( ("P",) )
-ser.schedule( ("M",25) )
-ser.schedule( ("P",) )
+    # Cosecha propia    
+    def close(self):
+        self.ser.close()  
 
-for i in range(100):
-    ser.next()
-    time.sleep(0.16)
+# ser = SerialCom( "COM4", print )
+# ser.schedule( ("M",100) )
+# ser.schedule( ("M",-50) )
+# ser.schedule( ("P",) )
+# ser.schedule( ("Z",) )
+# ser.schedule( ("P",) )
+# ser.schedule( ("M",25) )
+# ser.schedule( ("P",) )
+
+#for i in range(100):
+#    ser.next()
+#    time.sleep(0.16)
+

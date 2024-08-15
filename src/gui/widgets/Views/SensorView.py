@@ -29,26 +29,17 @@ def create_Graph (x, y):
         data_points = plot_graph.plot(x, y, pen=pen)
         return plot_graph, data_points
 
-def graph_update(self, x):
-        global TorqueTimeGraph, TorqueTimeGraphDataPoints, TorqueGraphX
-        y = []
-        for i in range(0, len(x)):
-                y.append(i/(self.PollingRate/2))
-        TorqueGraphX -= 1
-        TorqueTimeGraphDataPoints.setData(y, x)
-        TorqueTimeGraphDataPoints.setPos(TorqueGraphX/(self.PollingRate/2), 0)
 
 # ==================== Polling Rate ====================
 
 def SetupSensor(self, parent : QtWidgets.QWidget ):
 
-        self.ports = ["test1", "test2"]
         self.Torque = [0]
-        self.ConexionValida = False
         self.PollingRate = DefaultPR
         self.UnitIndex = 0
         
         aflag = QtCore.Qt.AlignmentFlag
+
 # ============ Página del sensor ============
 
         SensorLayoutV = QtWidgets.QVBoxLayout() # Layout para la sección de sensor.
@@ -72,12 +63,12 @@ def SetupSensor(self, parent : QtWidgets.QWidget ):
         TituloCard1 = QtWidgets.QLabel( "Realtime info", objectName="Subtitulo" )
         Card1Layout.addWidget( TituloCard1, alignment=aflag.AlignTop )
 
-        global TorqueTimeGraph, TorqueTimeGraphDataPoints, TorqueGraphX
-        TorqueGraphX = 0
-        TorqueTimeGraph, TorqueTimeGraphDataPoints = create_Graph(self.Torque, [0]) # Uso el elemento [0] por que la función de create_Graph devuelve una tupla conteniendo la gráfica y los data points.
-        Card1Layout.addWidget( TorqueTimeGraph, alignment=aflag.AlignLeft )
+        # self.TorqueTimeGraph, self.TorqueTimeGraphDataPoints, self.TorqueGraphX
+        self.TorqueGraphX = 0
+        self.TorqueTimeGraph, self.TorqueTimeGraphDataPoints = create_Graph(self.Torque, [0]) # Uso el elemento [0] por que la función de create_Graph devuelve una tupla conteniendo la gráfica y los data points.
+        Card1Layout.addWidget( self.TorqueTimeGraph, alignment=aflag.AlignLeft )
 
-# ============ Card1, configuración ============
+# ============ Card2, configuración ============
 
         self.Card2 = QtWidgets.QWidget( objectName="Card" )
         Card2Layout = QtWidgets.QVBoxLayout()
@@ -88,6 +79,7 @@ def SetupSensor(self, parent : QtWidgets.QWidget ):
         self.Card2.setProperty( "state", "attention" )
         TituloCard2 = QtWidgets.QLabel( "Configuration", objectName="Subtitulo" )
         Card2Layout.addWidget( TituloCard2, alignment=aflag.AlignTop )
+        self.Card2.setMaximumWidth(444)
 
 # === Port connection ===
         
@@ -95,21 +87,28 @@ def SetupSensor(self, parent : QtWidgets.QWidget ):
         Card2HLayout1.setAlignment(aflag.AlignTop)
         Card2HLayout1.setSpacing(10)
 
-        self.PortList = QtWidgets.QComboBox()
-        self.PortList.addItems(self.ports)
+        self.PortListS = QtWidgets.QComboBox()
+        self.PortListS.addItems(self.ports)
 
-        self.LoadButton = QtWidgets.QPushButton() # Se asignan a variables de la clase (self) para que pueda asignarle un evento luego en setCallback()
-        self.LoadButton.setText( "Load" )
-        self.LoadButton.setCursor( QCursor(QtCore.Qt.PointingHandCursor) )
+        self.LoadButtonS = QtWidgets.QPushButton() # Se asignan a variables de la clase (self) para que pueda asignarle un evento luego en setCallback()
+        self.LoadButtonS.setText( "Load" )
+        self.LoadButtonS.setCursor( QCursor(QtCore.Qt.PointingHandCursor) )
 
-        self.UpdateButton = QtWidgets.QPushButton()
-        self.UpdateButton.setText( "Update" )
-        self.UpdateButton.setCursor( QCursor(QtCore.Qt.PointingHandCursor) )
+        self.UpdateButtonS = QtWidgets.QPushButton()
+        self.UpdateButtonS.setText( "Update" )
+        self.UpdateButtonS.setCursor( QCursor(QtCore.Qt.PointingHandCursor) )
 
-        Card2HLayout1.addWidget( QtWidgets.QLabel( "COM Port", objectName="Text" ), alignment=aflag.AlignVCenter | aflag.AlignLeft )
-        Card2HLayout1.addWidget( self.PortList, alignment=aflag.AlignVCenter | aflag.AlignLeft )
-        Card2HLayout1.addWidget( self.LoadButton, alignment=aflag.AlignVCenter | aflag.AlignLeft )
-        Card2HLayout1.addWidget( self.UpdateButton, alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 1 )
+        self.DisconnectButtonS = QtWidgets.QPushButton()
+        self.DisconnectButtonS.setText( "Disconnect" )
+        self.DisconnectButtonS.setCursor( QCursor(QtCore.Qt.PointingHandCursor) )
+        self.DisconnectButtonS.setEnabled(False)
+        # self.DisconnectButton.adjustSize()
+
+        Card2HLayout1.addWidget( QtWidgets.QLabel( "Port", objectName="Text" ), alignment=aflag.AlignVCenter | aflag.AlignLeft )
+        Card2HLayout1.addWidget( self.PortListS, alignment=aflag.AlignVCenter | aflag.AlignLeft )
+        Card2HLayout1.addWidget( self.LoadButtonS, alignment=aflag.AlignVCenter | aflag.AlignLeft )
+        Card2HLayout1.addWidget( self.UpdateButtonS, alignment=aflag.AlignVCenter | aflag.AlignLeft)
+        Card2HLayout1.addWidget( self.DisconnectButtonS, alignment=aflag.AlignVCenter | aflag.AlignLeft, stretch = 1 )
         Card2Layout.addLayout( Card2HLayout1 )
 
 # === Polling rate ===
